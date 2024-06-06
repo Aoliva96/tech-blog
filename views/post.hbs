@@ -1,0 +1,48 @@
+<div>
+  <div>
+    <h2>{{post.title}}</h2>
+    <p>Created by {{post.user.username}} on {{formatDate post.date_created}}</p>
+  </div>
+  <div>
+    <p>{{post.content}}</p>
+  </div>
+  {{#if logged_in}}
+    <div>
+      <button data-id="{{post.id}}">Edit Post</button>
+      <button data-id="{{post.id}}">Delete Post</button>
+    </div>
+  {{/if}}
+  <div>
+    {{#if comments.length}}
+      <h3>Comments:</h3>
+      {{#each comments as |comment|}}
+        <div class="comment">
+          <p>{{comment.content}}</p>
+          <p>Commented by
+            {{comment.user.username}}
+            on
+            {{formatDate comment.date_created}}</p>
+        </div>
+      {{/each}}
+    {{else}}
+      <p>No comments yet.</p>
+    {{/if}}
+  </div>
+  <div>
+    <h3>Leave a Comment:</h3>
+    <form action="/comment" method="post">
+      <div class="form-group">
+        <label for="content-comment">Comment</label>
+        <textarea name="content" id="content-comment"></textarea>
+      </div>
+      <input type="hidden" name="post_id" value="{{post.id}}" />
+      <div class="form-group">
+        <button type="submit">Add Comment</button>
+      </div>
+      <div class="form-group" id="comment-error">
+        <h4 class="message"></h4>
+        <div class="close-btn">X</div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -3,17 +3,13 @@ module.exports = {
   formatDate: (date) => {
     return date.toLocaleDateString();
   },
-  // Format large numbers with commas
-  formatAmount: (amount) => {
-    return parseInt(amount).toLocaleString();
-  },
   // Toggle element visibility
   toggleMessage: (elementName, newContent) => {
     const element = document.getElementById(elementName);
     if (element) {
-      element.innerHTML = "";
-      if (newContent) {
-        element.innerHTML = newContent;
+      const message = element.querySelector(".message");
+      if (message) {
+        message.innerHTML = newContent ? newContent : "";
       }
       element.style.display =
         element.style.display === "none" ? "block" : "none";

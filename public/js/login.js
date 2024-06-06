@@ -59,6 +59,15 @@ const handleSignup = async (event) => {
   }
 };
 
+// Close button handler
+const handleClose = (event) => {
+  event.preventDefault();
+  toggleMessage(event.target.parentNode.id);
+};
+
 // Event listeners
 document.querySelector(".login-form").addEventListener("submit", handleLogin);
 document.querySelector(".signup-form").addEventListener("submit", handleSignup);
+document.querySelectorAll(".close-btn").forEach((element) => {
+  element.addEventListener("click", handleClose);
+});
