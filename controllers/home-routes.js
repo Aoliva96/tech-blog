@@ -28,9 +28,10 @@ router.get("/", async (req, res) => {
     // Serialize for template
     const posts = postData.map((post) => post.get({ plain: true }));
 
-    // res.render("homepage", { posts, logged_in: req.session.logged_in });
+    // Pass serialized data/session flag to template
+    res.render("homepage", { posts, logged_in: req.session.logged_in });
     // Test JSON response
-    res.status(200).json(posts);
+    // res.status(200).json(posts);
   } catch (err) {
     console.error("Error getting all posts:", err);
     res.status(500).json(err);
@@ -66,9 +67,9 @@ router.get("/post/:id", async (req, res) => {
     const post = postData.get({ plain: true });
 
     // Pass serialized data/session flag to template
-    // res.render("single-post", { ...post, logged_in: req.session.logged_in });
+    res.render("single-post", { ...post, logged_in: req.session.logged_in });
     // Test JSON response
-    res.status(200).json(post);
+    // res.status(200).json(post);
   } catch (err) {
     console.error("Error getting post:", err);
     res.status(500).json(err);
