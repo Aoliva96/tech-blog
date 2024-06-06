@@ -1,0 +1,42 @@
+[
+  {
+    "title": "The secret to a happy Node server",
+    "content": "Don't let it touch the DOM"
+  },
+  {
+    "title": "The power of async/await in JavaScript",
+    "content": "Simplify your asynchronous code"
+  },
+  {
+    "title": "Building RESTful APIs with Express",
+    "content": "Create scalable and maintainable APIs"
+  },
+  {
+    "title": "Introduction to React Hooks",
+    "content": "Manage state and side effects in functional components"
+  },
+  {
+    "title": "Securing your Node.js applications",
+    "content": "Best practices for protecting your application"
+  },
+  {
+    "title": "Getting started with Docker",
+    "content": "Containerize your applications for easy deployment"
+  },
+  {
+    "title": "Optimizing SQL queries for performance",
+    "content": "Improve the speed of your database queries"
+  },
+  {
+    "title": "Introduction to GraphQL",
+    "content": "A modern approach to API development"
+  },
+  {
+    "title": "Testing JavaScript applications with Jest",
+    "content": "Write reliable and maintainable tests"
+  },
+  {
+    "title": "Deploying Node.js applications to AWS",
+    "content": "Host your applications in the cloud"
+  }
+]
