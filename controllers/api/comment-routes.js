@@ -2,6 +2,9 @@ const router = require("express").Router();
 const { Comment } = require("../../models");
 const auth = require("../../utils/auth");
 
+// Endpoint: /api/comments
+// ========================
+
 // Create new comment
 router.post("/", auth, async (req, res) => {
   try {
@@ -20,7 +23,7 @@ router.post("/", auth, async (req, res) => {
 // Update comment
 router.put("/:id", auth, async (req, res) => {
   try {
-    const [affectedRows] = await Comment.update(req.body, {
+    const affectedRows = await Comment.update(req.body, {
       where: {
         id: req.params.id,
         user_id: req.session.user_id,
@@ -42,7 +45,7 @@ router.put("/:id", auth, async (req, res) => {
 // Delete comment
 router.delete("/:id", auth, async (req, res) => {
   try {
-    const [affectedRows] = Comment.destroy({
+    const affectedRows = await Comment.destroy({
       where: {
         id: req.params.id,
         user_id: req.session.user_id,

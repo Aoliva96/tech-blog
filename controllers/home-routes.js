@@ -2,6 +2,10 @@ const router = require("express").Router();
 const { Post, User, Comment } = require("../models");
 const auth = require("../utils/auth");
 
+// Endpoint: / (homepage)
+// =======================
+
+// Get all posts
 router.get("/", async (req, res) => {
   try {
     const postData = await Post.findAll({
@@ -12,7 +16,7 @@ router.get("/", async (req, res) => {
         },
         {
           model: Comment,
-          attributes: ["comment_text", "user_id", "post_id", "created_at"],
+          attributes: ["content", "user_id", "post_id", "created_at"],
           include: {
             model: User,
             attributes: ["username"],
@@ -21,17 +25,19 @@ router.get("/", async (req, res) => {
       ],
     });
 
-    // Serialize for template parsing
+    // Serialize for template
     const posts = postData.map((post) => post.get({ plain: true }));
 
-    // Pass serialized data/session flag to template
-    res.render("homepage", { posts, logged_in: req.session.logged_in });
+    // res.render("homepage", { posts, logged_in: req.session.logged_in });
+    // Test JSON response
+    res.status(200).json(posts);
   } catch (err) {
     console.error("Error getting all posts:", err);
     res.status(500).json(err);
   }
 });
 
+// Get single post
 router.get("/post/:id", async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
@@ -42,7 +48,7 @@ router.get("/post/:id", async (req, res) => {
         },
         {
           model: Comment,
-          attributes: ["comment_text", "user_id", "post_id", "created_at"],
+          attributes: ["content", "user_id", "post_id", "created_at"],
           include: {
             model: User,
             attributes: ["username"],
@@ -56,16 +62,20 @@ router.get("/post/:id", async (req, res) => {
       return;
     }
 
+    // Serialize data for template
     const post = postData.get({ plain: true });
 
-    res.render("single-post", { ...post, logged_in: req.session.logged_in });
+    // Pass serialized data/session flag to template
+    // res.render("single-post", { ...post, logged_in: req.session.logged_in });
+    // Test JSON response
+    res.status(200).json(post);
   } catch (err) {
     console.error("Error getting post:", err);
     res.status(500).json(err);
   }
 });
 
-// Use auth to protect user dashboard route
+// Auth protected user dashboard route
 router.get("/dashboard", auth, async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id, {
@@ -82,6 +92,7 @@ router.get("/dashboard", auth, async (req, res) => {
   }
 });
 
+// Logged in user redirect
 router.get("/login", (req, res) => {
   if (req.session.logged_in) {
     res.redirect("/dashboard");
