@@ -12,28 +12,28 @@
         <div
           class="container col-8 p-0 h-150px flex-row align-end justify-space-between"
         >
-          <div
-            id="header-logo"
-            class="pt-2 px-3 h-75px display-flex align-center bg-light"
-          >
-            <div id="header-logo-inner" class="px-4 bg-light-dark">
+          <div id="header-logo" class="pt-3 px-3 h-75px display-flex bg-light">
+            <div
+              id="header-logo-inner"
+              class="px-4 display-flex align-center bg-light-dark"
+            >
               <h1 class="text-dark">Tech Blog</h1>
             </div>
           </div>
           <div
             id="header-nav"
-            class="pt-2 px-3 h-75px display-flex align-center bg-light"
+            class="pt-2 px-3 h-50px display-flex align-end bg-light"
           >
             <nav>
-              <a class="btn btn-light-dark btn-lg" href="/">Home</a>
+              <a class="btn btn-light-dark btn-md" href="/">Home</a>
               <a
-                class="btn btn-light-dark btn-lg"
+                class="btn btn-light-dark btn-md"
                 href="/dashboard"
               >Dashboard</a>
               {{#if logged_in}}
-                <a class="btn btn-light-dark btn-lg" href="/logout">Logout</a>
+                <a class="btn btn-light-dark btn-md" href="/logout">Logout</a>
               {{else}}
-                <a class="btn btn-light-dark btn-lg" href="/login">Login</a>
+                <a class="btn btn-light-dark btn-md" href="/login">Login</a>
               {{/if}}
             </nav>
           </div>
@@ -53,7 +53,7 @@
     </main>
 
     <footer class="col-12 bg-dark p-0 h-100px">
-      <div class="col-8 p-0 mx-auto h-25px bg-light rounded-bottom"></div>
+      <div class="col-8 p-0 mx-auto h-25px bg-light rounded-bottom-md"></div>
     </footer>
   </body>
 </html>

@@ -15,4 +15,12 @@ module.exports = {
         element.style.display === "none" ? "block" : "none";
     }
   },
+  // Scroll to top of page
+  scrollToTop: () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  },
 };

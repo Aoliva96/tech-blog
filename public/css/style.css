@@ -34,12 +34,3 @@
 #header-nav a:not(:last-child) {
   margin-right: 0.4rem;
 }
-
-/* Main content */
-.rounded-bottom {
-  border-radius: 0 0 0.6rem 0.6rem;
-}
-
-.rounded-top {
-  border-radius: 0.6rem 0.6rem 0 0;
-}
