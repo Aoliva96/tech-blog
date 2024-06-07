@@ -1,48 +1,64 @@
-<div>
-  <div>
-    <h2>{{post.title}}</h2>
-    <p>Created by {{post.user.username}} on </p>
-  </div>
-  <div>
-    <p>{{post.content}}</p>
-  </div>
-  {{#if logged_in}}
-    <div>
-      <button data-id="{{post.id}}">Edit Post</button>
-      <button data-id="{{post.id}}">Delete Post</button>
+<div class="py-3 px-3 bg-light-dark rounded-top-sm-bottom-md">
+  <div class="post card card-rounded bg-white">
+    <div class="card-header pb-1 pt-2 bg-dark rounded-top-sm">
+      <h4>{{post.title}}</h4>
+      <p>Posted by {{post.user.username}} on </p>
     </div>
-  {{/if}}
-  <div>
-    {{#if comments.length}}
-      <h3>Comments:</h3>
-      {{#each comments as |comment|}}
-        <div class="comment">
-          <p>{{comment.content}}</p>
-          <p>Commented by
-            {{comment.user.username}}
-            on
-            {{formatDate comment.date_created}}</p>
-        </div>
-      {{/each}}
-    {{else}}
-      <p>No comments yet.</p>
+    <div class="card-body pt-2">
+      <p>{{post.content}}</p>
+    </div>
+    {{#if logged_in}}
+      <div>
+        <button data-id="{{post.id}}" class="btn btn-md btn-light-dark">Edit
+          Post</button>
+        <button data-id="{{post.id}}" class="btn btn-md btn-danger">Delete Post</button>
+      </div>
     {{/if}}
   </div>
-  <div>
-    <h3>Leave a Comment:</h3>
-    <form action="/comment" method="post">
-      <div class="form-group">
-        <label for="content-comment">Comment</label>
-        <textarea name="content" id="content-comment"></textarea>
+  <div class="card card-rounded bg-white mb-3">
+    <h4 class="card-header bg-dark text-white rounded-top-sm mb-0">Comment on
+      this post:</h4>
+    <div class="card-body">
+      <form action="/comment" method="post">
+        <div class="form-group m-0 my-3">
+          <input
+            type="text"
+            name="content-comment"
+            id="content-comment"
+            class="m-0 p-2 w-100"
+          />
+        </div>
+        <input type="hidden" name="post_id" value="{{post.id}}" />
+        <div class="form-group">
+          <button type="submit" class="btn btn-md btn-light-dark">Add Comment</button>
+        </div>
+        <div class="form-group" style="display: none;" id="comment-error">
+          <h4 class="message"></h4>
+          <div class="close-btn">X</div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="card card-rounded bg-white mb-3">
+    {{#if comments.length}}
+      <h4
+        class="card-header bg-dark text-white rounded-top-sm mb-0"
+      >Comments:</h4>
+      <div class="card-body">
+        {{#each comments as |comment|}}
+          <div class="comment card card-rounded bg-light">
+            <p>{{comment.content}}</p>
+            <p>Commented by
+              {{comment.user.username}}
+              on
+              {{formatDate comment.date_created}}</p>
+          </div>
+        {{/each}}
       </div>
-      <input type="hidden" name="post_id" value="{{post.id}}" />
-      <div class="form-group">
-        <button type="submit">Add Comment</button>
+    {{else}}
+      <div class="card-body">
+        <p>No comments yet.</p>
       </div>
-      <div class="form-group" id="comment-error">
-        <h4 class="message"></h4>
-        <div class="close-btn">X</div>
-      </div>
-    </form>
+    {{/if}}
   </div>
 </div>

@@ -78,18 +78,22 @@ router.get("/post/:id", async (req, res) => {
 
 // Auth protected user dashboard route
 router.get("/dashboard", auth, async (req, res) => {
-  try {
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ["password"] },
-      include: [{ model: Post }],
-    });
+  if (req.session.logged_in) {
+    try {
+      const userData = await User.findByPk(req.session.user_id, {
+        attributes: { exclude: ["password"] },
+        include: [{ model: Post }],
+      });
 
-    const user = userData.get({ plain: true });
+      const user = userData.get({ plain: true });
 
-    res.render("dashboard", { ...user, logged_in: true });
-  } catch (err) {
-    console.error("Error getting user data:", err);
-    res.status(500).json(err);
+      res.render("dashboard", { ...user, logged_in: true });
+    } catch (err) {
+      console.error("Error getting user data:", err);
+      res.status(500).json(err);
+    }
+  } else {
+    res.redirect("/login");
   }
 });
 
@@ -98,9 +102,9 @@ router.get("/login", (req, res) => {
   if (req.session.logged_in) {
     res.redirect("/dashboard");
     return;
+  } else {
+    res.render("login");
   }
-
-  res.render("login");
 });
 
 module.exports = router;
