@@ -1,9 +1,10 @@
 const path = require("path");
 const express = require("express");
 const session = require("express-session");
-const exphbs = require("express-handlebars");
+const { engine } = require("express-handlebars");
 const routes = require("./controllers");
 const helpers = require("./utils/helpers");
+require("dotenv").config();
 
 const sequelize = require("./config/connection");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
@@ -12,7 +13,9 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Handlebars config
-const hbs = exphbs.create({ helpers });
+app.engine("handlebars", engine({ helpers }));
+app.set("view engine", "handlebars");
+app.set("views", path.join(__dirname, "views"));
 
 // Session config
 const sess = {
@@ -34,9 +37,6 @@ const sess = {
 app.use(session(sess));
 
 // Express config
-app.engine("handlebars", hbs.engine);
-app.set("view engine", "handlebars");
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
@@ -44,7 +44,5 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () =>
-    console.log(`Now listening on http://localhost:${PORT}`)
-  );
+  app.listen(PORT, () => console.log(`Now listening on PORT:${PORT}`));
 });

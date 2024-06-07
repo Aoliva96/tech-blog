@@ -67,7 +67,7 @@ router.get("/post/:id", async (req, res) => {
     const post = postData.get({ plain: true });
 
     // Pass serialized data/session flag to template
-    res.render("single-post", { ...post, logged_in: req.session.logged_in });
+    res.render("post", { ...post, logged_in: req.session.logged_in });
     // Test JSON response
     // res.status(200).json(post);
   } catch (err) {
