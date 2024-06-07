@@ -8,25 +8,52 @@
   </head>
   <body>
     <header>
-      <div class="container col-12 bg-primary">
-        <h1><a href="/">Tech Blog</a></h1>
-        <nav>
-          <a href="/">Home</a>
-          <a href="/dashboard">Dashboard</a>
-          {{#if logged_in}}
-            <a href="/logout">Logout</a>
-          {{else}}
-            <a href="/login">Login</a>
-          {{/if}}
-        </nav>
+      <div class="col-12 p-0 h-150px bg-dark">
+        <div
+          class="container col-8 p-0 h-150px flex-row align-end justify-space-between"
+        >
+          <div
+            id="header-logo"
+            class="pt-2 px-3 h-75px display-flex align-center bg-light"
+          >
+            <div id="header-logo-inner" class="px-4 bg-light-dark">
+              <h1 class="text-dark">Tech Blog</h1>
+            </div>
+          </div>
+          <div
+            id="header-nav"
+            class="pt-2 px-3 h-75px display-flex align-center bg-light"
+          >
+            <nav>
+              <a class="btn btn-light-dark btn-lg" href="/">Home</a>
+              <a
+                class="btn btn-light-dark btn-lg"
+                href="/dashboard"
+              >Dashboard</a>
+              {{#if logged_in}}
+                <a class="btn btn-light-dark btn-lg" href="/logout">Logout</a>
+              {{else}}
+                <a class="btn btn-light-dark btn-lg" href="/login">Login</a>
+              {{/if}}
+            </nav>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 p-0 bg-dark">
+        <div class="col-8 p-0 mx-auto h-25px bg-light"></div>
       </div>
     </header>
 
-    <main>
-      {{{body}}}
+    <main class="col-12 p-0 bg-primary">
+      <div class="container col-8 p-0 mx-auto bg-light">
+        <div class="px-3 pb-1">
+          {{{body}}}
+        </div>
+      </div>
     </main>
 
-    <footer>
+    <footer class="col-12 bg-dark p-0 h-100px">
+      <div class="col-8 p-0 mx-auto h-25px bg-light rounded-bottom"></div>
     </footer>
   </body>
 </html>
