@@ -1,4 +1,4 @@
-const withAuth = (req, res, next) => {
+const auth = (req, res, next) => {
   // Redirect anonymous users to login page
   if (!req.session.logged_in) {
     res.redirect("/login");
@@ -7,4 +7,4 @@ const withAuth = (req, res, next) => {
   }
 };
 
-module.exports = withAuth;
+module.exports = auth;
