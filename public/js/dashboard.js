@@ -1,4 +1,4 @@
-import { toggleMessage } from "./utils.js";
+import { toggleMessage } from "./helpers";
 
 // Create new post form handler
 const handleNewPost = async (event) => {
