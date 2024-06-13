@@ -64,6 +64,7 @@ I addressed the above problems in the following way:
 - I developed the sequelize models and seed data to match.
 - I designed and built a modular UI using the Handlebars template engine, intended to be both polished and responsive.
 - I utilized bcrypt and an auth util file to enable secure user logins and data handling.
+- I decided to add an extra feature for scrolling back to the top of the homepage once the bottom is reached, to enhance the user experience of scrolling through a large number of posts. I may choose to update this feature in the future to have the button appear and float in a fixed position, once a certain distance from the top of the page has been reached.
 
 See below for screenshots of the home and login pages:
 
