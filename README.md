@@ -75,7 +75,7 @@ See below for screenshots of the home and login pages:
 
 [Link to the GitHub repo for this project](https://github.com/Aoliva96/tech-blog)
 
-[Link to the deployed project on Heroku]()
+[Link to the deployed project on Heroku](https://bootcamp-project-tech-blog-6939c1dede08.herokuapp.com/)
 
 ## Collaborators
 
