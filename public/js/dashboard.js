@@ -25,18 +25,22 @@ const handleNewPost = async (event) => {
 // Show edit form handler
 const showEditForm = (event) => {
   if (event.target.hasAttribute("data-id")) {
-    const id = event.target.getAttribute("data-id");
+    const postId = event.target.getAttribute("data-id");
+    const editForm = document.querySelector(
+      `.edit-post-form[data-id="${postId}"]`
+    );
 
-    document.querySelector(`.post-${id}`).classList.toggle("d-none");
-    document.querySelector(`.edit-${id}`).classList.toggle("d-none");
+    if (editForm) {
+      editForm.classList.remove("hidden");
+    }
   }
 };
 
 // Edit post button handler
 const handleEditPost = async (event) => {
+  event.preventDefault();
   if (event.target.hasAttribute("data-id")) {
     const id = event.target.getAttribute("data-id");
-
     const title = document.querySelector(".title-edit").value.trim();
     const content = document.querySelector(".content-edit").value.trim();
 
@@ -60,9 +64,9 @@ const handleEditPost = async (event) => {
 
 // Delete post button handler
 const handleDeletePost = async (event) => {
+  event.preventDefault();
   if (event.target.hasAttribute("data-id")) {
     const id = event.target.getAttribute("data-id");
-
     const response = await fetch(`/api/posts/${id}`, {
       method: "DELETE",
     });

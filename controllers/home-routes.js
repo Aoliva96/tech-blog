@@ -106,4 +106,17 @@ router.get("/login", (req, res) => {
   }
 });
 
+// Logout user and redirect to homepage
+router.get("/logout", (req, res) => {
+  if (req.session.logged_in) {
+    req.session.destroy(() => {
+      console.log(`Logged out user.`);
+      res.redirect("/");
+    });
+  } else {
+    console.error("Could not log out user, not found.");
+    res.status(404).end();
+  }
+});
+
 module.exports = router;

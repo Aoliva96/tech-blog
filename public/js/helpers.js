@@ -11,7 +11,7 @@ function toggleMessage(elementName, newContent) {
     if (message) {
       message.innerHTML = newContent ? newContent : "";
     }
-    element.style.display = element.style.display === "none" ? "block" : "none";
+    element.classList.remove("hidden");
   }
 }
 

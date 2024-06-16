@@ -1,9 +1,7 @@
 module.exports = {
   // Format date as MM/DD/YYYY
   formatDate: (date) => {
-    console.log("date:", date);
     const rawDate = new Date(date);
-    console.log("rawDate:", rawDate);
     return rawDate.toLocaleDateString();
   },
   // Toggle element visibility
@@ -14,8 +12,8 @@ module.exports = {
       if (message) {
         message.innerHTML = newContent ? newContent : "";
       }
-      element.style.display =
-        element.style.display === "none" ? "block" : "none";
+      element.classList.remove("hidden");
+      element.classList.add("display-flex");
     }
   },
   // Scroll to top of page

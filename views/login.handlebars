@@ -1,7 +1,7 @@
 <div class="pt-3 pb-1 px-3 bg-light-dark rounded-top-sm">
   <div class="card card-rounded bg-white">
     <h4 class="card-header bg-dark rounded-top-sm">Login</h4>
-    <div class="card-body">
+    <div class="card-body pr-2">
       <form action="/login" method="post" class="login-form">
         <div class="form-group">
           <label for="email-login">Email: </label>
@@ -14,9 +14,11 @@
         <div class="form-group">
           <button type="submit" class="btn btn-md btn-light-dark">Login</button>
         </div>
-        <div class="form-group" id="login-error">
-          <h4 class="message"></h4>
-          <div class="close-btn" style="display: none;">X</div>
+        <div
+          class="form-group bg-danger rounded-sm p-1 pt-2 pl-2 text-white hidden"
+          id="login-error"
+        >
+          <h5 class="message"></h5>
         </div>
       </form>
     </div>
@@ -26,7 +28,7 @@
 <div class="pt-3 pb-1 px-3 bg-light-dark rounded-bottom-md">
   <div class="card card-rounded bg-white">
     <h4 class="card-header bg-dark rounded-top-sm">Signup</h4>
-    <div class="card-body">
+    <div class="card-body pr-2">
       <form action="/signup" method="post" class="signup-form">
         <div class="form-group">
           <label for="username-signup">Username: </label>
@@ -43,9 +45,11 @@
         <div class="form-group">
           <button type="submit" class="btn btn-md btn-light-dark">Sign up</button>
         </div>
-        <div class="form-group" id="signup-error">
-          <h4 class="message"></h4>
-          <div class="close-btn" style="display: none;">X</div>
+        <div
+          class="form-group bg-danger rounded-sm p-1 pt-2 pl-2 text-white hidden"
+          id="signup-error"
+        >
+          <h5 class="message"></h5>
         </div>
       </form>
     </div>
