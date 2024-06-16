@@ -1,5 +1,3 @@
-import { toggleMessage } from "../../utils/helpers";
-
 // Login form handler
 const handleLogin = async (event) => {
   event.preventDefault();

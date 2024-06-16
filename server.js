@@ -3,7 +3,7 @@ const express = require("express");
 const session = require("express-session");
 const { engine } = require("express-handlebars");
 const routes = require("./controllers");
-const helpers = require("./public/js/helpers");
+const helpers = require("./utils/helpers");
 require("dotenv").config();
 
 const sequelize = require("./config/connection");

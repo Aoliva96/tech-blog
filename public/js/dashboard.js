@@ -1,5 +1,3 @@
-import { toggleMessage } from "./helpers";
-
 // Create new post form handler
 const handleNewPost = async (event) => {
   event.preventDefault();
