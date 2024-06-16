@@ -1,19 +1,16 @@
 <div class="py-3 px-3 bg-light-dark rounded-top-sm-bottom-md">
-  <div class="post card card-rounded bg-white">
+  <div class="post card card-rounded bg-white pb-2">
     <div class="card-header pb-1 pt-2 bg-dark rounded-top-sm">
       <h4>{{post.title}}</h4>
-      <p>Posted by {{post.user.username}} on </p>
     </div>
-    <div class="card-body pt-2">
+    <div class="card-body pt-2 pb-0">
       <p>{{post.content}}</p>
+      <hr />
+      <p class="mt-2">Posted by
+        {{post.user.username}}
+        on
+        {{formatDate post.date_created}}</p>
     </div>
-    {{#if logged_in}}
-      <div>
-        <button data-id="{{post.id}}" class="btn btn-md btn-light-dark">Edit
-          Post</button>
-        <button data-id="{{post.id}}" class="btn btn-md btn-danger">Delete Post</button>
-      </div>
-    {{/if}}
   </div>
   <div class="card card-rounded bg-white mb-3">
     <h4 class="card-header bg-dark text-white rounded-top-sm mb-0">Comment on
@@ -21,12 +18,12 @@
     <div class="card-body">
       <form action="/comment" method="post">
         <div class="form-group m-0 my-3">
-          <input
+          <textarea
             type="text"
             name="content-comment"
             id="content-comment"
             class="m-0 p-2 w-100"
-          />
+          ></textarea>
         </div>
         <input type="hidden" name="post_id" value="{{post.id}}" />
         <div class="form-group">
@@ -39,25 +36,35 @@
       </form>
     </div>
   </div>
-  <div class="card card-rounded bg-white mb-3">
-    {{#if comments.length}}
+  <div class="card rounded-top-sm-bottom-md bg-white mb-3">
+    {{#if post.comments.length}}
       <h4
         class="card-header bg-dark text-white rounded-top-sm mb-0"
       >Comments:</h4>
       <div class="card-body">
-        {{#each comments as |comment|}}
-          <div class="comment card card-rounded bg-light">
-            <p>{{comment.content}}</p>
-            <p>Commented by
+        {{#each post.comments as |comment|}}
+          <div
+            class="comment card card-rounded bg-white mt-2 mr-1"
+            style="border: 1px solid var(--dark);"
+          >
+            <h5
+              class="card-header bg-dark text-white rounded-top-sm mb-0"
+              style="border-bottom: 1px solid var(--dark);"
+            >
               {{comment.user.username}}
               on
-              {{formatDate comment.date_created}}</p>
+              {{formatDate comment.date_created}}
+              said:
+            </h5>
+            <p
+              class="card-content bg-white p-3 pb-0 rounded-bottom-sm"
+            >{{comment.content}}</p>
           </div>
         {{/each}}
       </div>
     {{else}}
       <div class="card-body">
-        <p>No comments yet.</p>
+        <p class="pt-2">No comments yet.</p>
       </div>
     {{/if}}
   </div>

@@ -12,7 +12,6 @@ const handleLogin = async (event) => {
       body: JSON.stringify({ email, password }),
       headers: { "Content-Type": "application/json" },
     });
-
     if (response.ok) {
       // Redirect to dashboard if login successful
       document.location.replace("/dashboard");

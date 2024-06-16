@@ -2,7 +2,7 @@
   <div class="card card-rounded bg-white">
     <h4 class="card-header bg-dark rounded-top-sm">Login</h4>
     <div class="card-body">
-      <form action="/login" method="post">
+      <form action="/login" method="post" class="login-form">
         <div class="form-group">
           <label for="email-login">Email: </label>
           <input type="email" name="email-login" id="email-login" />
@@ -12,10 +12,7 @@
           <input type="password" name="password-login" id="password-login" />
         </div>
         <div class="form-group">
-          <button
-            type="submit"
-            class="login-form btn btn-md btn-light-dark"
-          >Login</button>
+          <button type="submit" class="btn btn-md btn-light-dark">Login</button>
         </div>
         <div class="form-group" id="login-error">
           <h4 class="message"></h4>
@@ -30,7 +27,7 @@
   <div class="card card-rounded bg-white">
     <h4 class="card-header bg-dark rounded-top-sm">Signup</h4>
     <div class="card-body">
-      <form action="/signup" method="post">
+      <form action="/signup" method="post" class="signup-form">
         <div class="form-group">
           <label for="username-signup">Username: </label>
           <input type="text" name="username-signup" id="username-signup" />
@@ -44,10 +41,7 @@
           <input type="password" name="password-signup" id="password-signup" />
         </div>
         <div class="form-group">
-          <button
-            type="submit"
-            class="signup-form btn btn-md btn-light-dark"
-          >Sign up</button>
+          <button type="submit" class="btn btn-md btn-light-dark">Sign up</button>
         </div>
         <div class="form-group" id="signup-error">
           <h4 class="message"></h4>

@@ -1,7 +1,10 @@
 module.exports = {
   // Format date as MM/DD/YYYY
   formatDate: (date) => {
-    return date.toLocaleDateString();
+    console.log("date:", date);
+    const rawDate = new Date(date);
+    console.log("rawDate:", rawDate);
+    return rawDate.toLocaleDateString();
   },
   // Toggle element visibility
   toggleMessage: (elementName, newContent) => {

@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
         },
         {
           model: Comment,
-          attributes: ["content", "user_id", "post_id", "created_at"],
+          attributes: ["content", "user_id", "post_id", "date_created"],
           include: {
             model: User,
             attributes: ["username"],
@@ -49,7 +49,7 @@ router.get("/post/:id", async (req, res) => {
         },
         {
           model: Comment,
-          attributes: ["content", "user_id", "post_id", "created_at"],
+          attributes: ["content", "user_id", "post_id", "date_created"],
           include: {
             model: User,
             attributes: ["username"],
@@ -65,9 +65,8 @@ router.get("/post/:id", async (req, res) => {
 
     // Serialize data for template
     const post = postData.get({ plain: true });
-
     // Pass serialized data/session flag to template
-    res.render("post", { ...post, logged_in: req.session.logged_in });
+    res.render("post", { post, logged_in: req.session.logged_in });
     // Test JSON response
     // res.status(200).json(post);
   } catch (err) {

@@ -1,45 +1,122 @@
-<div>
-  <h2>Welcome to your dashboard, {{username}}!</h2>
-</div>
+<div class="py-3 px-3 bg-light-dark rounded-top-sm-bottom-md">
+  <div class="post card card-rounded bg-white">
+    <div class="card-header pb-1 pt-2 bg-dark rounded-sm">
+      <h3>Welcome to your dashboard, {{username}}!</h3>
+    </div>
+  </div>
 
-<div>
-  <h3>Create a New Post:</h3>
-  <form action="/post" method="post">
-    <div class="form-group">
-      <label for="title-new">Title</label>
-      <input type="text" name="title" id="title-new" />
+  <div class="post card card-rounded bg-white">
+    <div class="card-header pb-1 pt-2 bg-dark rounded-top-sm">
+      <h4>Create a New Post:</h4>
     </div>
-    <div class="form-group">
-      <label for="content-new">Content</label>
-      <textarea name="content" id="content-new"></textarea>
+    <div class="card-body mr-1">
+      <form action="/post" method="post" class="new-post-form">
+        <div class="form-group mt-0">
+          <div class="mb-1">
+            <label for="title-new">Title</label>
+          </div>
+          <div>
+            <input type="text" name="title" class="title-new w-50" />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="mb-1">
+            <label for="content-new">Content</label>
+          </div>
+          <div>
+            <textarea
+              name="content-new"
+              class="m-0 p-2 w-100 content-new"
+            ></textarea>
+          </div>
+        </div>
+        <div class="form-group pt-2">
+          <button type="submit" class="btn btn-md btn-light-dark">Create Post</button>
+        </div>
+        <div class="form-group" id="post-error">
+          <h4 class="message"></h4>
+          <div class="close-btn" style="display: none;">X</div>
+        </div>
+      </form>
     </div>
-    <div class="form-group">
-      <button type="submit">Create Post</button>
-    </div>
-    <div class="form-group" id="post-error">
-      <h4 class="message"></h4>
-      <div class="close-btn">X</div>
-    </div>
-  </form>
-</div>
+  </div>
 
-<div>
-  <h3>Your Posts:</h3>
-  {{#if posts.length}}
-    {{#each posts as |post|}}
-      <div class="post">
-        <div>
-          <h4>{{post.title}}</h4>
-          <p>{{formatDate post.date_created}}</p>
-        </div>
-        <div>
-          <a href="/post/{{post.id}}">View Post</a>
-        </div>
-      </div>
-    {{/each}}
-  {{else}}
-    <p>You have not created any posts yet.</p>
-  {{/if}}
+  <div class="post card rounded-top-sm-bottom-md bg-white">
+    <div class="card-header pb-1 pt-2 bg-dark rounded-top-sm">
+      <h3>Your Posts:</h3>
+    </div>
+    <div class="card-content p-2">
+      {{#if posts.length}}
+        {{#each posts as |post|}}
+          <div
+            class="post rounded-sm pb-1 mb-3 mt-1"
+            style="outline: 1px solid var(--dark);"
+          >
+            <div class="card-header pb-1 pt-2 bg-dark rounded-top-sm">
+              <a href="/post/{{post.id}}" class="text-white"><h4
+                >{{post.title}}</h4></a>
+            </div>
+            <div class="card-body pt-3 mr-1">
+              <p>{{post.content}}</p>
+              <hr />
+              <p class="mt-2">Posted on
+                {{formatDate post.date_created}}</p>
+            </div>
+            <div class="ml-2 mb-2 mt-0">
+              <button
+                data-id="{{post.id}}"
+                class="btn btn-md btn-light-dark mr-1 edit-btn"
+              >Edit Post</button>
+              <button
+                data-id="{{post.id}}"
+                class="btn btn-md btn-danger delete-btn"
+              >Delete Post</button>
+            </div>
+            <div class="mx-2 pt-1">
+              <hr />
+              <form action="/post" method="post" class="edit-post-form">
+                <div class="form-group mt-0">
+                  <div class="mb-1">
+                    <label for="title-edit">Title</label>
+                  </div>
+                  <div>
+                    <input type="text" name="title" class="title-edit w-50" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="mb-1">
+                    <label for="content-edit">Content</label>
+                  </div>
+                  <div>
+                    <textarea
+                      name="content-edit"
+                      class="m-0 p-2 w-100 content-edit"
+                    ></textarea>
+                  </div>
+                </div>
+                <div class="form-group pt-2">
+                  <button
+                    type="submit"
+                    class="btn btn-md btn-light-dark mr-1"
+                  >Update Post</button>
+                  <button
+                    type="cancel"
+                    class="btn btn-md btn-danger"
+                  >Cancel</button>
+                </div>
+                <div class="form-group" id="edit-error">
+                  <h4 class="message"></h4>
+                  <div class="close-btn" style="display: none;">X</div>
+                </div>
+              </form>
+            </div>
+          </div>
+        {{/each}}
+      {{else}}
+        <p>You have not created any posts yet.</p>
+      {{/if}}
+    </div>
+  </div>
 </div>
 
 <script src="/js/dashboard.js"></script>
