@@ -62,15 +62,16 @@ I addressed the above problems in the following way:
 
 - I configured the Express server & Sequelize architecture after installing the following NPM packages: bcrypt, dotenv, express, express-handlebars, express-session, connect-session-sequelize, sequelize, and mysql2.
 - I developed the sequelize models and seed data to match.
-- I designed and built a modular UI using the Handlebars template engine, intended to be both polished and responsive.
+- I designed, built, and polished a modular UI using the Handlebars template engine.
 - I utilized bcrypt and an auth util file to enable secure user logins and data handling.
-- I decided to add an extra feature for scrolling back to the top of the homepage once the bottom is reached, to enhance the user experience of scrolling through a large number of posts. I may choose to update this feature in the future to have the button appear and float in a fixed position, once a certain distance from the top of the page has been reached.
+- I decided to add an extra feature for scrolling back to the top of the homepage once the bottom is reached, to enhance the user experience of scrolling through a large number of posts.
+- I also added the extra feature for users to delete comments they have made on others' posts, if logged-in.
 
-See below for screenshots of the home and login pages:
+See below for screenshots of the home and dashboard pages:
 
-![Screenshot of deployed project's homepage](./public/assets/project-screenshot_home.png)
+![Screenshot of deployed project's homepage](./public/assets/project-homepage-screenshot.png)
 
-![Screenshot of deployed project's login page](./public/assets/project-screenshot_login.png)
+![Screenshot of deployed project's user dashboard page](./public/assets/project-dashboard-screenshot.png)
 
 ## Deployment
 
@@ -92,7 +93,7 @@ See the links below to see some of the resources I used for this project:
 
 [Sequelize v6 | Sequelize](https://sequelize.org/docs/v6/)
 
-I also referenced the week 14 bootcamp mini-project solution for the project file structure, and utilized a modified version of its jass.css file for project styles.
+I also referenced the week 14 bootcamp mini-project solution for the project file structure, and utilized a heavily modified version of its jass.css file for project styles/normalization.
 
 ## License
 
