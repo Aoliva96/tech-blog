@@ -41,8 +41,8 @@ const handleEditPost = async (event) => {
   event.preventDefault();
   if (event.target.hasAttribute("data-id")) {
     const id = event.target.getAttribute("data-id");
-    const title = document.querySelector(".title-edit").value.trim();
-    const content = document.querySelector(".content-edit").value.trim();
+    const title = document.querySelector(`.title-edit-${id}`).value.trim();
+    const content = document.querySelector(`.content-edit-${id}`).value.trim();
 
     if (title && content) {
       const response = await fetch(`/api/posts/${id}`, {
@@ -86,8 +86,8 @@ document
   .querySelector(".new-post-form")
   .addEventListener("submit", handleNewPost);
 document
-  .querySelector(".edit-post-form")
-  .addEventListener("submit", handleEditPost);
+  .querySelectorAll(".edit-post-form")
+  .forEach((form) => form.addEventListener("submit", handleEditPost));
 document
   .querySelectorAll(".edit-btn")
   .forEach((btn) => btn.addEventListener("click", showEditForm));

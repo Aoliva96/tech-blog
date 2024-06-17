@@ -3,40 +3,54 @@
     <div class="card-header pb-1 pt-2 bg-dark rounded-top-sm">
       <h4>{{post.title}}</h4>
     </div>
-    <div class="card-body pt-2 pb-0">
+    <div class="card-body pt-3 pb-0">
       <p>{{post.content}}</p>
-      <hr />
-      <p class="mt-2">Posted by
+    </div>
+    <hr />
+    <div class="card-body pt-0 pb-1">
+      <p class="mt-3 mb-0">Posted by
         {{post.user.username}}
         on
         {{formatDate post.date_created}}</p>
     </div>
   </div>
-  <div class="card card-rounded bg-white mb-3">
+  <div class="card card-rounded bg-white mb-3 pb-0 new-comment-container">
     <h4 class="card-header bg-dark text-white rounded-top-sm mb-0">Comment on
       this post:</h4>
-    <div class="card-body">
-      <form action="/comment" method="post">
+    <div class="card-body px-2 pb-2 pt-0">
+      <form
+        action="/comment"
+        method="post"
+        class="new-comment-form mb-1"
+        data-id="{{post.id}}"
+      >
         <div class="form-group m-0 my-3">
+          <label for="content-comment" class="hidden">Comment:</label>
           <textarea
             type="text"
             name="content-comment"
             id="content-comment"
-            class="m-0 p-2 w-100"
+            class="content-comment m-0 p-2 w-100"
           ></textarea>
         </div>
         <input type="hidden" name="post_id" value="{{post.id}}" />
-        <div class="form-group">
-          <button type="submit" class="btn btn-md btn-light-dark">Add Comment</button>
+        <div class="form-group mb-0">
+          <button
+            type="submit"
+            class="btn btn-md btn-light-dark"
+            data-id="{{post.id}}"
+          >Add Comment</button>
         </div>
-        <div class="form-group" style="display: none;" id="comment-error">
-          <h4 class="message"></h4>
-          <div class="close-btn">X</div>
+        <div
+          class="form-group bg-danger rounded-sm p-1 pt-2 pl-2 text-white hidden"
+          id="new-comment-error"
+        >
+          <h5 class="message"></h5>
         </div>
       </form>
     </div>
   </div>
-  <div class="card rounded-top-sm-bottom-md bg-white mb-3">
+  <div class="card rounded-top-sm-bottom-md bg-white mb-1">
     {{#if post.comments.length}}
       <h4
         class="card-header bg-dark text-white rounded-top-sm mb-0"
@@ -44,6 +58,7 @@
       <div class="card-body">
         {{#each post.comments as |comment|}}
           <div
+            data-user-id="{{comment.user_id}}"
             class="comment card card-rounded bg-white mt-2 mr-1"
             style="border: 1px solid var(--dark);"
           >
@@ -59,6 +74,18 @@
             <p
               class="card-content bg-white p-3 pb-0 rounded-bottom-sm"
             >{{comment.content}}</p>
+            <hr class="comment-divider" />
+            <button
+              data-id="{{post.id}}"
+              data-comment-id="{{comment.id}}"
+              class="btn btn-md btn-danger delete-btn ml-3 mb-3 mt-1"
+            >Delete Comment</button>
+            <div
+              class="form-group comment-error bg-danger rounded-sm p-1 pt-2 pl-2 mx-3 mb-3 text-white hidden"
+              id="comment-error-{{comment.id}}"
+            >
+              <h5 class="message"></h5>
+            </div>
           </div>
         {{/each}}
       </div>
@@ -69,3 +96,5 @@
     {{/if}}
   </div>
 </div>
+
+<script src="/js/post.js"></script>

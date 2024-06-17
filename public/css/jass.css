@@ -1388,6 +1388,28 @@ a:hover {
   border-radius: calc(0.18rem - 1px) calc(0.18rem - 1px) 0 0;
 }
 
+.card.card-clickable {
+  cursor: pointer;
+  transition: outline 0.2s linear, background-color 0.2s linear,
+    box-shadow 0.2s linear;
+  transition-delay: box-shadow 0.1s;
+}
+
+.card.card-clickable:hover {
+  border: none !important;
+  outline: 2px solid var(--secondary-hover) !important;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.4);
+}
+
+.card.card-clickable:hover .card-header {
+  background-color: var(--secondary-hover) !important;
+  transition: background-color 0.2s linear;
+}
+
+.card.card-clickable:last-child {
+  margin-bottom: 0;
+}
+
 form {
   width: 100%;
 }

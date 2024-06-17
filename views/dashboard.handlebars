@@ -39,64 +39,73 @@
         <div class="form-group pt-2">
           <button type="submit" class="btn btn-md btn-light-dark">Create Post</button>
         </div>
-        <div class="form-group" id="post-error">
-          <h4 class="message"></h4>
-          <div class="close-btn" style="display: none;">X</div>
+        <div
+          class="form-group bg-danger rounded-sm p-1 pt-2 pl-2 text-white hidden"
+          id="post-error"
+        >
+          <h5 class="message"></h5>
         </div>
       </form>
     </div>
   </div>
 
-  <div class="post card rounded-top-sm-bottom-md bg-white">
+  <div class="post card rounded-top-sm-bottom-md bg-white mb-1">
     <div class="card-header pb-1 pt-2 bg-dark rounded-top-sm">
       <h3>Your Posts:</h3>
     </div>
-    <div class="card-content p-2">
+    <div class="card-content px-3 pt-0 pb-3">
       {{#if posts.length}}
         {{#each posts as |post|}}
           <div
-            class="post rounded-sm pb-1 mb-3 mt-1"
+            data-id="{{post.id}}"
+            id="post-{{post.id}}"
+            class="post card card-clickable rounded-sm pb-1 mb-1 mt-4"
             style="outline: 1px solid var(--dark);"
+            onclick="window.location.href='/post/{{post.id}}'"
           >
             <div class="card-header pb-1 pt-2 bg-dark rounded-top-sm">
-              <a href="/post/{{post.id}}" class="text-white"><h4
-                >{{post.title}}</h4></a>
+              <h4>{{post.title}}</h4>
             </div>
             <div class="card-body pt-3 mr-1">
-              <p>{{post.content}}</p>
-              <hr />
-              <p class="mt-2">Posted on
+              <p class="mb-1">{{post.content}}</p>
+            </div>
+            <hr />
+            <div class="card-body py-0 mr-1">
+              <p class="my-3">Posted on
                 {{formatDate post.date_created}}</p>
             </div>
-            <div class="ml-2 mb-2 mt-0">
+            <div class="ml-2 my-1">
               <button
                 data-id="{{post.id}}"
                 class="btn btn-md btn-light-dark mr-1 edit-btn"
+                onclick="event.stopPropagation(); document.querySelector('#form-divider-{{post.id}}').classList.remove('hidden'); document.querySelector('#post-{{post.id}}').removeAttribute('onclick');"
               >Edit Post</button>
               <button
                 data-id="{{post.id}}"
                 class="btn btn-md btn-danger delete-btn"
+                onclick="event.stopPropagation();"
               >Delete Post</button>
             </div>
-            <div class="mx-2 pt-1">
-
+            <hr id="form-divider-{{post.id}}" class="mt-4 hidden" />
+            <div class="mx-2 pt-0">
+              {{! TODO: Rework 'onclick' attributes to function(s) in dashboard.js }}
               <form
                 action="/post"
                 method="post"
                 class="edit-post-form hidden"
                 data-id="{{post.id}}"
+                data-update="update-form-{{post.id}}"
               >
-                <hr />
                 <div class="form-group mt-0">
                   <div class="mb-1">
-                    <label for="title-edit">Title</label>
+                    <label for="title-edit-{{post.id}}">Title</label>
                   </div>
                   <div>
                     <input
                       type="text"
-                      name="title-edit"
-                      id="title-edit"
-                      class="title-edit w-50"
+                      name="title-edit-{{post.id}}"
+                      id="title-edit-{{post.id}}"
+                      class="title-edit-{{post.id}} w-50"
                       value="{{post.title}}"
                     />
                   </div>
@@ -107,9 +116,9 @@
                   </div>
                   <div>
                     <textarea
-                      name="content-edit"
-                      id="content-edit"
-                      class="m-0 p-2 w-100 content-edit"
+                      name="content-edit-{{post.id}}"
+                      id="content-edit-{{post.id}}"
+                      class="content-edit-{{post.id}} m-0 p-2 w-100"
                     >{{post.content}}</textarea>
                   </div>
                 </div>
@@ -117,7 +126,13 @@
                   <button
                     type="submit"
                     class="btn btn-md btn-light-dark mr-1"
-                  >Update Post</button>
+                    data-update="update-{{post.id}}"
+                  >Update</button>
+                  <button
+                    type="button"
+                    class="btn btn-md btn-danger"
+                    onclick="event.stopPropagation(); this.closest('.edit-post-form').classList.add('hidden'); document.querySelector('#form-divider-{{post.id}}').classList.add('hidden'); document.querySelector('#post-{{post.id}}').setAttribute('onclick', 'window.location.href=\'/post/{{post.id}}\'');"
+                  >Cancel</button>
                 </div>
                 <div
                   class="form-group bg-danger rounded-sm p-1 pt-2 pl-2 text-white hidden"
